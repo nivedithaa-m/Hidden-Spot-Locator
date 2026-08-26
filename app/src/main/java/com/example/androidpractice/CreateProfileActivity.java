@@ -1,5 +1,5 @@
 package com.example.androidpractice;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -39,6 +39,24 @@ public class CreateProfileActivity extends AppCompatActivity {
                             android.graphics.Color.parseColor("#1976D2")
                     )
             );
+            continueButton.setOnClickListener(view -> {
+
+                if (selectedRole.equals("traveller")) {
+
+                    Intent intent = new Intent(
+                            CreateProfileActivity.this,
+                            TravellerProfileActivity.class
+                    );
+
+                    startActivity(intent);
+
+                } else if (selectedRole.equals("business")) {
+
+                    // Business page will be added later
+
+                }
+
+            });
         });
 
         // Business selected
@@ -55,6 +73,24 @@ public class CreateProfileActivity extends AppCompatActivity {
                             android.graphics.Color.parseColor("#1976D2")
                     )
             );
+            continueButton.setOnClickListener(view -> {
+
+                if (selectedRole.equals("traveller")) {
+
+                    Intent intent = new Intent(
+                            CreateProfileActivity.this,
+                            TravellerProfileActivity.class
+                    );
+
+                    startActivity(intent);
+
+                } else if (selectedRole.equals("business")) {
+
+                    // Business page will be added later
+
+                }
+
+            });
         });
     }
 }
