@@ -8,7 +8,17 @@ import android.util.Patterns;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
 import java.util.Calendar;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +28,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class TravellerProfileActivity extends AppCompatActivity {
+    private ImageView profileImage;
+    private Button uploadPhotoButton;
+
+    private boolean photoSelected = false;
 
     private EditText nameInput;
     private EditText emailInput;
@@ -42,6 +56,53 @@ public class TravellerProfileActivity extends AppCompatActivity {
 
         // Connect Create Profile button
         createProfileButton = findViewById(R.id.createProfileButton);
+        profileImage = findViewById(R.id.profileImage);
+        uploadPhotoButton = findViewById(R.id.uploadPhotoButton);
+        uploadPhotoButton.setOnClickListener(v -> {
+
+            String[] options = {"Camera", "Gallery"};
+
+            new android.app.AlertDialog.Builder(this)
+                    .setTitle("Choose Profile Photo")
+                    .setItems(options, (dialog, which) -> {
+
+                        if (which == 0) {
+
+                            // Camera selected
+                            if (ContextCompat.checkSelfPermission(
+                                    this,
+                                    Manifest.permission.CAMERA
+                            ) == PackageManager.PERMISSION_GRANTED) {
+
+                                openCamera();
+
+                            } else {
+
+                                cameraPermissionLauncher.launch(
+                                        Manifest.permission.CAMERA
+                                );
+                            }
+
+                        } else {
+
+                            // Gallery selected
+                            if (ContextCompat.checkSelfPermission(
+                                    this,
+                                    Manifest.permission.READ_MEDIA_IMAGES
+                            ) == PackageManager.PERMISSION_GRANTED) {
+
+                                openGallery();
+
+                            } else {
+
+                                galleryPermissionLauncher.launch(
+                                        Manifest.permission.READ_MEDIA_IMAGES
+                                );
+                            }
+                        }
+                    })
+                    .show();
+        });
 
         // Initially disable the button
         createProfileButton.setEnabled(false);
@@ -293,6 +354,20 @@ public class TravellerProfileActivity extends AppCompatActivity {
         phoneInput.addTextChangedListener(textWatcher);
         dobInput.addTextChangedListener(textWatcher);
         passwordInput.addTextChangedListener(textWatcher);
+        createProfileButton.setOnClickListener(v -> {
+
+            String username = nameInput.getText().toString().trim();
+
+            Intent intent = new Intent(
+                    TravellerProfileActivity.this,
+                    HomeActivity.class
+            );
+
+            intent.putExtra("username", username);
+
+            startActivity(intent);
+            finish();
+        });
 
         // -------------------------------------------------
         // WINDOW INSETS
@@ -345,8 +420,83 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         && !email.isEmpty()
                         && !phone.isEmpty()
                         && !dob.isEmpty()
-                        && !password.isEmpty();
+                        && !password.isEmpty()
+                        && photoSelected;
 
         createProfileButton.setEnabled(allFilled);
+    }
+    private final ActivityResultLauncher<Intent> galleryLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+
+                        if (result.getResultCode() == RESULT_OK
+                                && result.getData() != null) {
+
+                            Uri imageUri = result.getData().getData();
+
+                            if (imageUri != null) {
+                                profileImage.setImageURI(imageUri);
+                                photoSelected = true;
+                                checkFields();
+                            }
+                        }
+                    }
+            );
+
+    private final ActivityResultLauncher<Intent> cameraLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+
+                        if (result.getResultCode() == RESULT_OK
+                                && result.getData() != null) {
+
+                            Bitmap photo =
+                                    (Bitmap) result.getData()
+                                            .getExtras()
+                                            .get("data");
+
+                            if (photo != null) {
+                                profileImage.setImageBitmap(photo);
+                                photoSelected = true;
+                                checkFields();
+                            }
+                        }
+                    });
+    private final ActivityResultLauncher<String> cameraPermissionLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.RequestPermission(),
+                    isGranted -> {
+
+                        if (isGranted) {
+                            openCamera();
+                        }
+                    });
+    private final ActivityResultLauncher<String> galleryPermissionLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.RequestPermission(),
+                    isGranted -> {
+
+                        if (isGranted) {
+                            openGallery();
+                        }
+                    });
+    private void openCamera() {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        cameraLauncher.launch(intent);
+    }
+    private void openGallery() {
+
+        Intent intent = new Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        );
+
+        intent.setType("image/*");
+
+        galleryLauncher.launch(intent);
     }
 }

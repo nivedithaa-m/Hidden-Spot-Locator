@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F7F8F3">
+
+    <!-- Main scrollable content -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingTop="45dp"
+            android:paddingBottom="25dp">
+
+            <!-- Greeting -->
+
+            <TextView
+                android:id="@+id/greetingText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hi, Traveller 👋"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#173F43"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="start" />
+
+            <!-- Question -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Where will you discover today?"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#506568"
+                android:textSize="15sp"
+                android:gravity="start" />
+
+            <!-- Explore Hidden Spots -->
+
+            <LinearLayout
+                android:id="@+id/exploreHiddenSpots"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/home_explore_card"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Explore Hidden Spots  →"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:gravity="start" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Find unique places worth discovering"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="#D5ECE9"
+                    android:textSize="12sp"
+                    android:gravity="start" />
+
+            </LinearLayout>
+
+
+            <!-- Add Hidden Spot -->
+
+            <LinearLayout
+                android:id="@+id/addHiddenSpot"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/home_add_card"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="+  Add a Hidden Spot"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#173F43"
+                    android:textSize="15sp"
+                    android:gravity="start" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="Share a place others should discover"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="#607274"
+                    android:textSize="11sp"
+                    android:gravity="start" />
+
+            </LinearLayout>
+
+
+            <!-- Recently Discovered -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Recently Discovered"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#173F43"
+                    android:textSize="17sp"
+                    android:gravity="start" />
+
+                <TextView
+                    android:id="@+id/viewAllText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#23847D"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+            <!-- Recent description -->
+
+            <TextView
+                android:id="@+id/recentDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Your latest discoveries"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#748183"
+                android:textSize="11sp"
+                android:gravity="start" />
+
+
+            <!-- Empty state -->
+
+            <LinearLayout
+                android:id="@+id/emptyRecentState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:padding="25dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/home_empty_card">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nothing discovered yet"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#173F43"
+                    android:textSize="15sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="You haven't explored any places yet. Start discovering hidden spots and restaurants to build your recent discoveries."
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="#6D7B7D"
+                    android:textSize="12sp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <!-- ============================= -->
+    <!-- BOTTOM NAVIGATION BAR -->
+    <!-- ============================= -->
+
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/bottom_nav_background"
+        android:elevation="8dp">
+
+        <!-- HOME -->
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_home"
+                android:tint="#0B5D66"
+                android:contentDescription="Home" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Home"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#0B5D66"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+        <!-- EXPLORE -->
+
+        <LinearLayout
+            android:id="@+id/navExplore"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_explore"
+                android:tint="#829191"
+                android:contentDescription="Explore" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Explore"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#829191"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+        <!-- ADD SPOT -->
+
+        <LinearLayout
+            android:id="@+id/navAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_add_location"
+                android:tint="#829191"
+                android:contentDescription="Add hidden spot" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Add Spot"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#829191"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+        <!-- PROFILE -->
+
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_profile"
+                android:tint="#829191"
+                android:contentDescription="Profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Profile"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#829191"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
