@@ -1,5 +1,8 @@
 package com.example.androidpractice;
+
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -25,72 +28,37 @@ public class CreateProfileActivity extends AppCompatActivity {
         businessCard = findViewById(R.id.businessCard);
         continueButton = findViewById(R.id.continueButton);
 
-        // Traveller selected
         travellerCard.setOnClickListener(v -> {
-
             selectedRole = "traveller";
-
             travellerCard.setSelected(true);
             businessCard.setSelected(false);
-
-            continueButton.setEnabled(true);
-            continueButton.setBackgroundTintList(
-                    android.content.res.ColorStateList.valueOf(
-                            android.graphics.Color.parseColor("#1976D2")
-                    )
-            );
-            continueButton.setOnClickListener(view -> {
-
-                if (selectedRole.equals("traveller")) {
-
-                    Intent intent = new Intent(
-                            CreateProfileActivity.this,
-                            TravellerProfileActivity.class
-                    );
-
-                    startActivity(intent);
-
-                } else if (selectedRole.equals("business")) {
-
-                    // Business page will be added later
-
-                }
-
-            });
+            enableContinueButton();
         });
 
-        // Business selected
         businessCard.setOnClickListener(v -> {
-
             selectedRole = "business";
-
             businessCard.setSelected(true);
             travellerCard.setSelected(false);
-
-            continueButton.setEnabled(true);
-            continueButton.setBackgroundTintList(
-                    android.content.res.ColorStateList.valueOf(
-                            android.graphics.Color.parseColor("#1976D2")
-                    )
-            );
-            continueButton.setOnClickListener(view -> {
-
-                if (selectedRole.equals("traveller")) {
-
-                    Intent intent = new Intent(
-                            CreateProfileActivity.this,
-                            TravellerProfileActivity.class
-                    );
-
-                    startActivity(intent);
-
-                } else if (selectedRole.equals("business")) {
-
-                    // Business page will be added later
-
-                }
-
-            });
+            enableContinueButton();
         });
+
+        continueButton.setOnClickListener(view -> {
+            if (selectedRole.equals("traveller")) {
+                startActivity(new Intent(
+                        CreateProfileActivity.this,
+                        TravellerProfileActivity.class));
+
+            } else if (selectedRole.equals("business")) {
+                startActivity(new Intent(
+                        CreateProfileActivity.this,
+                        BusinessProfileActivity.class));
+            }
+        });
+    }
+
+    private void enableContinueButton() {
+        continueButton.setEnabled(true);
+        continueButton.setBackgroundTintList(
+                ColorStateList.valueOf(Color.parseColor("#1976D2")));
     }
 }
