@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/welcomeRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Slideshow background -->
+    <ImageSwitcher
+        android:id="@+id/backgroundSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Original dark overlay (kept, unchanged resource) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/welcome_overlay" />
+
+    <!-- Extra bottom gradient so text stays readable on any image -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_bottom_overlay" />
+
+    <!-- Main content -->
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="30dp">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/headingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HIDDEN SPOT"
+            android:fontFamily="@font/fraunces_bold"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:letterSpacing="0.02"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/subHeadingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="LOCATOR"
+            android:fontFamily="@font/fraunces_semibold"
+            android:textColor="#9DE7DF"
+            android:textSize="18sp"
+            android:letterSpacing="0.14"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/taglineText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Discover the places that don't always make the map."
+            android:fontFamily="@font/inter_medium"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Explore hidden gems, taste local flavours, and find unforgettable stops along your journey."
+            android:fontFamily="@font/inter_regular"
+            android:textColor="#E8F5F4"
+            android:textSize="13sp"
+            android:lineSpacingExtra="4dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/dotsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <View
+                android:id="@+id/dot0"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/dot_active" />
+
+            <View
+                android:id="@+id/dot1"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/dot_inactive" />
+
+            <View
+                android:id="@+id/dot2"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/dot_inactive" />
+
+            <View
+                android:id="@+id/dot3"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/dot_inactive" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tapAnywhereHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Tap anywhere to continue"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="#B8E8E2"
+            android:textSize="13sp"
+            android:letterSpacing="0.03" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101615">
+
+    <!-- Background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/waterfall3"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <!-- Dark overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B8101615" />
+
+    <!-- Main content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="105dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingTop="52dp"
+            android:paddingBottom="30dp">
+
+            <!-- Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hi, Traveller 👋"
+                        android:textColor="#FFFFFF"
+                        android:textSize="27sp"
+                        android:fontFamily="@font/fraunces_bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Ready to find somewhere different?"
+                        android:textColor="#B8C5C4"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/inter_regular" />
+
+                </LinearLayout>
+
+                <!-- Profile -->
+                <ImageView
+                    android:id="@+id/homeProfileImage"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/home_profile_circle"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile_placeholder"
+                    android:clipToOutline="true"
+                    android:contentDescription="Profile photo" />
+            </LinearLayout>
+
+            <!-- Explore label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:text="EXPLORE"
+                android:textColor="#9DE7DF"
+                android:textSize="11sp"
+                android:letterSpacing="0.18"
+                android:fontFamily="@font/inter_medium" />
+
+            <!-- Main Explore Card -->
+            <LinearLayout
+                android:id="@+id/navExplore"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/home_feature_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hidden spots"
+                    android:textColor="#9DE7DF"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter_medium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Explore beyond\nthe usual."
+                    android:textColor="#FFFFFF"
+                    android:textSize="29sp"
+                    android:fontFamily="@font/fraunces_bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Discover lesser-known places along your journey."
+                    android:textColor="#D4DFDC"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter_regular" />
+
+            </LinearLayout>
+
+            <!-- Add spot -->
+            <LinearLayout
+                android:id="@+id/navAdd"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/home_secondary_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp">
+
+                <TextView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/home_icon_circle"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="#17211D"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/inter_regular" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Add a hidden spot"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/inter_medium" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Share a place others should discover"
+                        android:textColor="#9AA9A5"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/inter_regular" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="#9DE7DF"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <!-- Recent discoveries -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recent discoveries"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp"
+                    android:fontFamily="@font/fraunces_semibold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@drawable/home_secondary_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nothing here yet"
+                        android:textColor="#DCE5E2"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/inter_medium" />
+
+                    <TextView
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:text="Your discoveries will appear here as you explore."
+                        android:textColor="#899995"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/inter_regular" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Bottom navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/home_bottom_nav"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <!-- Home -->
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⌂"
+                android:textColor="#9DE7DF"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Home"
+                android:textColor="#9DE7DF"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_medium" />
+
+        </LinearLayout>
+
+        <!-- Explore -->
+        <LinearLayout
+            android:id="@+id/navExploreBottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⌕"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Explore"
+                android:textColor="#899995"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_regular" />
+
+        </LinearLayout>
+
+        <!-- Add -->
+        <LinearLayout
+            android:id="@+id/navAddBottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Add"
+                android:textColor="#899995"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_regular" />
+
+        </LinearLayout>
+
+        <!-- Profile -->
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="○"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Profile"
+                android:textColor="#899995"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_regular" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
