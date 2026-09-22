@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/traveller_profile_background"
+        android:src="@drawable/traveller"
         android:scaleType="centerCrop"
         android:contentDescription="@null" />
 
@@ -43,7 +43,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="CREATE TRAVELLER PROFILE"
                 android:fontFamily="@font/poppins_semibold"
-                android:textColor="#9DE7DF"
+                android:textColor="#000000"
                 android:textSize="27sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.05" />
@@ -271,10 +271,10 @@
                 android:textAllCaps="false"
                 android:textSize="15sp"
                 android:fontFamily="@font/poppins_semibold"
-                android:textColor="#FFFFFF"
+                android:textColor="#17211D"
                 android:enabled="false"
                 android:background="@drawable/profile_continue_button"
-                android:backgroundTint="@null"/>/>
+                android:backgroundTint="@null" />
 
         </LinearLayout>
 
