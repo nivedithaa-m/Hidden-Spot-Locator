@@ -1,24 +1,91 @@
 package com.example.androidpractice;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
+
+    EditText etUsername, etPassword;
+    Button btnLogin;
+    TextView tvCreateAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        tvCreateAccount = findViewById(R.id.tvCreateAccount);
+
+        btnLogin.setOnClickListener(v -> {
+
+            String username = etUsername.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
+
+            if (username.isEmpty()) {
+                etUsername.setError("Please enter your username");
+                etUsername.requestFocus();
+                return;
+            }
+
+            if (password.isEmpty()) {
+                etPassword.setError("Please enter your password");
+                etPassword.requestFocus();
+                return;
+            }
+
+            SharedPreferences prefs =
+                    getSharedPreferences("UserData", MODE_PRIVATE);
+
+            String savedUsername =
+                    prefs.getString("username", "");
+
+            String savedPassword =
+                    prefs.getString("password", "");
+
+            if (username.equals(savedUsername) &&
+                    password.equals(savedPassword)) {
+
+                Toast.makeText(
+                        LoginActivity.this,
+                        "Login successful",
+                        Toast.LENGTH_SHORT
+                ).show();
+
+                Intent intent = new Intent(
+                        LoginActivity.this,
+                        HomeActivity.class
+                );
+
+                startActivity(intent);
+                finish();
+
+            } else {
+                Toast.makeText(
+                        LoginActivity.this,
+                        "Invalid username or password",
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
+
+        tvCreateAccount.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    LoginActivity.this,
+                    TravellerIntroActivity.class
+            );
+
+            startActivity(intent);
         });
     }
 }
