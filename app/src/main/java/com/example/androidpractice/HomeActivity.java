@@ -1,12 +1,12 @@
 package com.example.androidpractice;
-
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 public class HomeActivity extends AppCompatActivity {
 
     private LinearLayout navHome;
@@ -15,6 +15,7 @@ public class HomeActivity extends AppCompatActivity {
     private LinearLayout navProfile;
 
     private TextView greetingText;
+    private ImageView homeProfileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,36 @@ public class HomeActivity extends AppCompatActivity {
         navProfile = findViewById(R.id.navProfile);
 
         greetingText = findViewById(R.id.greetingText);
-
+        homeProfileImage = findViewById(R.id.homeProfileImage);
         // Get username from CreateProfileActivity
         String username = getIntent().getStringExtra("username");
 
         if (username != null && !username.isEmpty()) {
             greetingText.setText("Hi, " + username + " 👋");
+        }
+        // Get profile photo from TravellerProfileActivity
+
+        String profileImageUri = getIntent().getStringExtra("profileImageUri");
+
+        if (profileImageUri != null && !profileImageUri.isEmpty()) {
+
+            homeProfileImage.setImageURI(Uri.parse(profileImageUri));
+
+        } else {
+
+            byte[] profileImageBytes =
+                    getIntent().getByteArrayExtra("profileImageBytes");
+
+            if (profileImageBytes != null) {
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(
+                        profileImageBytes,
+                        0,
+                        profileImageBytes.length
+                );
+
+                homeProfileImage.setImageBitmap(bitmap);
+            }
         }
 
         // HOME
