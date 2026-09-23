@@ -1,5 +1,5 @@
 package com.example.androidpractice;
-
+import java.io.ByteArrayOutputStream;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -365,6 +365,18 @@ public class TravellerProfileActivity extends AppCompatActivity {
 
             intent.putExtra("username", username);
 
+            if (profileImage.getTag() instanceof String) {
+                intent.putExtra(
+                        "profileImageUri",
+                        (String) profileImage.getTag()
+                );
+            } else if (profileImage.getTag() instanceof byte[]) {
+                intent.putExtra(
+                        "profileImageBytes",
+                        (byte[]) profileImage.getTag()
+                );
+            }
+
             startActivity(intent);
             finish();
         });
@@ -437,6 +449,7 @@ public class TravellerProfileActivity extends AppCompatActivity {
 
                             if (imageUri != null) {
                                 profileImage.setImageURI(imageUri);
+                                profileImage.setTag(imageUri.toString());
                                 photoSelected = true;
                                 checkFields();
                             }
@@ -460,6 +473,13 @@ public class TravellerProfileActivity extends AppCompatActivity {
                             if (photo != null) {
                                 profileImage.setImageBitmap(photo);
                                 photoSelected = true;
+
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                photo.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+                                byte[] photoBytes = stream.toByteArray();
+
+                                profileImage.setTag(photoBytes);
+
                                 checkFields();
                             }
                         }
