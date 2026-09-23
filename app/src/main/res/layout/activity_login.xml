@@ -2,26 +2,22 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <!-- Nature background -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/forest2"
         android:scaleType="centerCrop" />
 
-    <!-- Dark transparent overlay -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#66000000" />
 
-    <!-- Login content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,7 +64,6 @@
             android:layout_marginTop="8dp"
             android:gravity="center" />
 
-        <!-- Username -->
         <EditText
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
@@ -82,7 +77,6 @@
             android:background="#55000000"
             android:layout_marginTop="35dp" />
 
-        <!-- Password -->
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
@@ -96,7 +90,6 @@
             android:background="#55000000"
             android:layout_marginTop="14dp" />
 
-        <!-- Login -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
@@ -108,7 +101,6 @@
             android:backgroundTint="#2E7D6B"
             android:layout_marginTop="25dp" />
 
-        <!-- Create Account message -->
         <TextView
             android:id="@+id/tvCreateAccount"
             android:layout_width="wrap_content"

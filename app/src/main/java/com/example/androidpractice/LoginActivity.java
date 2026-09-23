@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         tvCreateAccount = findViewById(R.id.tvCreateAccount);
 
-        // Login button
         btnLogin.setOnClickListener(v -> {
 
             String username = etUsername.getText().toString().trim();
@@ -45,11 +43,14 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            // Temporary login
-            SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+            SharedPreferences prefs =
+                    getSharedPreferences("UserData", MODE_PRIVATE);
 
-            String savedUsername = prefs.getString("username", "");
-            String savedPassword = prefs.getString("password", "");
+            String savedUsername =
+                    prefs.getString("username", "");
+
+            String savedPassword =
+                    prefs.getString("password", "");
 
             if (username.equals(savedUsername) &&
                     password.equals(savedPassword)) {
@@ -77,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Create Account
         tvCreateAccount.setOnClickListener(v -> {
 
             Intent intent = new Intent(
