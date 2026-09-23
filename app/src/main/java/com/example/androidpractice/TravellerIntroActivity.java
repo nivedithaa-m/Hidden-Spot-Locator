@@ -33,7 +33,11 @@ public class TravellerIntroActivity extends AppCompatActivity {
             startActivity(intent);
         });
         skipButton.setOnClickListener(v -> {
-            // We will connect Skip to the next part of the flow later.
+            Intent intent = new Intent(
+                    TravellerIntroActivity.this,
+                    BusinessProfileActivity.class
+            );
+            startActivity(intent);
         });
     }
 }
