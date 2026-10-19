@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#101615">
+    android:background="#101615"
+    tools:context=".HomeActivity">
 
-    <!-- Background -->
+    <!-- Subtle Background Overlay -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/waterfall3"
+        android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:contentDescription="@null" />
+        android:src="@drawable/waterfall3" />
 
-    <!-- Dark overlay -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B8101615" />
+        android:background="#E6101615" />
 
-    <!-- Main content -->
+    <!-- Main Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         android:clipToPadding="false"
-        android:paddingBottom="105dp">
+        android:fillViewport="true"
+        android:paddingBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="22dp"
-            android:paddingEnd="22dp"
-            android:paddingTop="52dp"
-            android:paddingBottom="30dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="44dp"
+            android:paddingBottom="24dp">
 
-            <!-- Header -->
+            <!-- Header Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,200 +54,364 @@
                         android:id="@+id/greetingText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/fraunces_bold"
                         android:text="Hi, Traveller 👋"
                         android:textColor="#FFFFFF"
-                        android:textSize="27sp"
-                        android:fontFamily="@font/fraunces_bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Ready to find somewhere different?"
-                        android:textColor="#B8C5C4"
-                        android:textSize="13sp"
-                        android:fontFamily="@font/inter_regular" />
-
-                </LinearLayout>
-
-                <!-- Profile -->
-                <ImageView
-                    android:id="@+id/homeProfileImage"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/home_profile_circle"
-                    android:padding="2dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/profile_placeholder"
-                    android:clipToOutline="true"
-                    android:contentDescription="Profile photo" />
-            </LinearLayout>
-
-            <!-- Explore label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
-                android:text="EXPLORE"
-                android:textColor="#9DE7DF"
-                android:textSize="11sp"
-                android:letterSpacing="0.18"
-                android:fontFamily="@font/inter_medium" />
-
-            <!-- Main Explore Card -->
-            <LinearLayout
-                android:id="@+id/navExplore"
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/home_feature_card"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="bottom"
-                android:orientation="vertical"
-                android:padding="22dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hidden spots"
-                    android:textColor="#9DE7DF"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/inter_medium" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Explore beyond\nthe usual."
-                    android:textColor="#FFFFFF"
-                    android:textSize="29sp"
-                    android:fontFamily="@font/fraunces_bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:text="Discover lesser-known places along your journey."
-                    android:textColor="#D4DFDC"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/inter_regular" />
-
-            </LinearLayout>
-
-            <!-- Add spot -->
-            <LinearLayout
-                android:id="@+id/navAdd"
-                android:layout_width="match_parent"
-                android:layout_height="76dp"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/home_secondary_card"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp">
-
-                <TextView
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:background="@drawable/home_icon_circle"
-                    android:gravity="center"
-                    android:text="+"
-                    android:textColor="#17211D"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/inter_regular" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Add a hidden spot"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/inter_medium" />
+                        android:textSize="26sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="Share a place others should discover"
-                        android:textColor="#9AA9A5"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/inter_regular" />
-
+                        android:fontFamily="@font/inter_regular"
+                        android:text="Explore beyond the usual in Kollam, Kerala"
+                        android:textColor="#B8C5C4"
+                        android:textSize="13sp" />
                 </LinearLayout>
+
+                <!-- Profile Photo -->
+                <ImageView
+                    android:id="@+id/homeProfileImage"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/home_profile_circle"
+                    android:clipToOutline="true"
+                    android:contentDescription="Profile photo"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile_placeholder" />
+            </LinearLayout>
+
+            <!-- District Badge -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/home_icon_circle"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_place"
+                    app:tint="#17211D" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="›"
-                    android:textColor="#9DE7DF"
-                    android:textSize="28sp" />
-
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Kollam District, Kerala"
+                    android:textColor="#17211D"
+                    android:textSize="12sp" />
             </LinearLayout>
 
-            <!-- Recent discoveries -->
-            <LinearLayout
+            <!-- Section Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/inter_medium"
+                android:letterSpacing="0.15"
+                android:text="EXPLORE &amp; DISCOVER"
+                android:textColor="#9DE7DF"
+                android:textSize="11sp" />
+
+            <!-- Explore Hidden Spots (Main Route/Map & Navigation Access) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/navExplore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="31dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Recent discoveries"
-                    android:textColor="#FFFFFF"
-                    android:textSize="19sp"
-                    android:fontFamily="@font/fraunces_semibold" />
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#182220"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="125dp"
-                    android:layout_marginTop="11dp"
-                    android:background="@drawable/home_secondary_card"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:padding="18dp">
+
+                    <ImageView
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:src="@drawable/ic_place"
+                        app:tint="#9DE7DF" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fraunces_semibold"
+                            android:text="Explore Route &amp; Map"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="Interactive road routes, live distance radar &amp; hidden spots."
+                            android:textColor="#B8C5C4"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nothing here yet"
-                        android:textColor="#DCE5E2"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/inter_medium" />
+                        android:text="›"
+                        android:textColor="#9DE7DF"
+                        android:textSize="26sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Add Spot Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/navAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="#182220"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="18dp">
 
                     <TextView
-                        android:layout_width="280dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/home_icon_circle"
+                        android:fontFamily="@font/inter_medium"
                         android:gravity="center"
-                        android:text="Your discoveries will appear here as you explore."
-                        android:textColor="#899995"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/inter_regular" />
+                        android:text="+"
+                        android:textColor="#17211D"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fraunces_semibold"
+                            android:text="Add a Hidden Spot"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="Recommend your favorite local discovery to travellers."
+                            android:textColor="#B8C5C4"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#9DE7DF"
+                        android:textSize="26sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Featured Destinations Carousel -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/fraunces_semibold"
+                android:text="Featured Kollam Discoveries"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Spot 1 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="14dp"
+                        app:cardBackgroundColor="#182220"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fraunces_semibold"
+                                android:text="Munroe Island"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="Backwater canal cluster"
+                                android:textColor="#B8C5C4"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:background="@drawable/home_icon_circle"
+                                android:fontFamily="@font/inter_medium"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp"
+                                android:text="⭐ 4.9 • Hidden Spot"
+                                android:textColor="#17211D"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Spot 2 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="14dp"
+                        app:cardBackgroundColor="#182220"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fraunces_semibold"
+                                android:text="Jatayu Earth Center"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="Giant bird sculpture peak"
+                                android:textColor="#B8C5C4"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:background="@drawable/home_icon_circle"
+                                android:fontFamily="@font/inter_medium"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp"
+                                android:text="⭐ 4.9 • Landmark"
+                                android:textColor="#17211D"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Spot 3 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#182220"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fraunces_semibold"
+                                android:text="Palaruvi Waterfalls"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="300ft forest cascade"
+                                android:textColor="#B8C5C4"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:background="@drawable/home_icon_circle"
+                                android:fontFamily="@font/inter_medium"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp"
+                                android:text="⭐ 4.8 • Waterfall"
+                                android:textColor="#17211D"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
-
-            </LinearLayout>
+            </HorizontalScrollView>
 
         </LinearLayout>
 
     </ScrollView>
 
-    <!-- Bottom navigation -->
+    <!-- Bottom Navigation Bar for Traveller -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_height="72dp"
         android:layout_gravity="bottom"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -257,10 +420,9 @@
         android:elevation="10dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp">
+        android:paddingHorizontal="8dp">
 
-        <!-- Home -->
+        <!-- Home (Highlighted) -->
         <LinearLayout
             android:id="@+id/navHome"
             android:layout_width="0dp"
@@ -280,10 +442,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_medium"
                 android:text="Home"
                 android:textColor="#9DE7DF"
-                android:textSize="10sp"
-                android:fontFamily="@font/inter_medium" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -307,10 +469,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
                 android:text="Explore"
                 android:textColor="#899995"
-                android:textSize="10sp"
-                android:fontFamily="@font/inter_regular" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -334,10 +496,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
                 android:text="Add"
                 android:textColor="#899995"
-                android:textSize="10sp"
-                android:fontFamily="@font/inter_regular" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -361,10 +523,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
                 android:text="Profile"
                 android:textColor="#899995"
-                android:textSize="10sp"
-                android:fontFamily="@font/inter_regular" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 

@@ -193,10 +193,11 @@
                 android:layout_marginTop="23dp"
                 android:background="@drawable/traveller_continue_button"
                 android:fontFamily="@font/inter_medium"
-                android:text="Continue"
+                android:paddingHorizontal="12dp"
+                android:text="Continue to Traveller Profile"
                 android:textAllCaps="false"
                 android:textColor="#10201D"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <!-- Skip -->
             <TextView

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "94318961136",
+    "project_id": "hidden-spot-locator",
+    "storage_bucket": "hidden-spot-locator.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94318961136:android:523a587e403eb4b66d7d35",
+        "android_client_info": {
+          "package_name": "com.example.androidpractice.newversion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSYou2BbfU2sLWKuP3RgHb7Xf1X1iPWsU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

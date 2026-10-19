@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.googleServices)
     alias(libs.plugins.android.application)
 }
 
@@ -9,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.androidpractice"
+        applicationId = "com.example.androidpractice.newversion"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
@@ -36,6 +37,11 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation(libs.osmdroid.android)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)

@@ -1,6 +1,7 @@
 package com.example.androidpractice;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 import android.Manifest;
 import android.content.Intent;
@@ -12,11 +13,13 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -27,9 +30,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TravellerProfileActivity extends AppCompatActivity {
+
+    private static final String TAG = "TravellerProfile";
 
     private ImageView profileImage;
     private Button uploadPhotoButton;
@@ -109,7 +118,7 @@ public class TravellerProfileActivity extends AppCompatActivity {
                     .show();
         });
 
-        // Initially disable the button
+        // Initially disable the button until required fields are filled
         createProfileButton.setEnabled(false);
 
         // -------------------------------------------------
@@ -364,50 +373,7 @@ public class TravellerProfileActivity extends AppCompatActivity {
         dobInput.addTextChangedListener(textWatcher);
         passwordInput.addTextChangedListener(textWatcher);
 
-        createProfileButton.setOnClickListener(v -> {
-
-            String username =
-                    nameInput.getText().toString().trim();
-
-            String password =
-                    passwordInput.getText().toString().trim();
-
-            // Save username and password
-            getSharedPreferences(
-                    "UserData",
-                    MODE_PRIVATE
-            )
-                    .edit()
-                    .putString("username", username)
-                    .putString("password", password)
-                    .apply();
-
-            Intent intent = new Intent(
-                    TravellerProfileActivity.this,
-                    HomeActivity.class
-            );
-
-            intent.putExtra("username", username);
-            intent.putExtra("password", password);
-
-            if (profileImage.getTag() instanceof String) {
-
-                intent.putExtra(
-                        "profileImageUri",
-                        (String) profileImage.getTag()
-                );
-
-            } else if (profileImage.getTag() instanceof byte[]) {
-
-                intent.putExtra(
-                        "profileImageBytes",
-                        (byte[]) profileImage.getTag()
-                );
-            }
-
-            startActivity(intent);
-            finish();
-        });
+        createProfileButton.setOnClickListener(v -> handleCreateProfileClick());
 
         // -------------------------------------------------
         // WINDOW INSETS
@@ -432,6 +398,85 @@ public class TravellerProfileActivity extends AppCompatActivity {
                     return insets;
                 }
         );
+    }
+
+    private void handleCreateProfileClick() {
+        String username = nameInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
+        String email = emailInput.getText().toString().trim();
+        String phone = phoneInput.getText().toString().trim();
+        String dob = dobInput.getText().toString().trim();
+
+        if (username.isEmpty() || email.isEmpty() || phone.isEmpty() || dob.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill in all required profile fields.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailInput.setError("Please enter a valid email address");
+            emailInput.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6) {
+            passwordInput.setError("Password must be at least 6 characters");
+            passwordInput.requestFocus();
+            return;
+        }
+
+        createProfileButton.setEnabled(false);
+
+        // Save credentials locally
+        getSharedPreferences("UserData", MODE_PRIVATE)
+                .edit()
+                .putString("username", username)
+                .putString("password", password)
+                .putString("email", email)
+                .putString("phone", phone)
+                .apply();
+
+        // Perform Firebase Auth registration & Firestore user document creation
+        if (FirebaseAuthManager.isFirebaseReady()) {
+            Map<String, Object> extraFields = new HashMap<>();
+            extraFields.put("phone", phone);
+            extraFields.put("dob", dob);
+
+            FirebaseAuthManager.registerUser(email, password, username, "traveller", extraFields, new FirebaseAuthManager.AuthCallback() {
+                @Override
+                public void onSuccess(String userId, String userEmail, String role) {
+                    runOnUiThread(() -> {
+                        Toast.makeText(TravellerProfileActivity.this, "Traveller account & profile created successfully!", Toast.LENGTH_SHORT).show();
+                        navigateToHome(username, password);
+                    });
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    runOnUiThread(() -> {
+                        createProfileButton.setEnabled(true);
+                        Toast.makeText(TravellerProfileActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                    });
+                }
+            });
+        } else {
+            // Local offline fallback
+            Toast.makeText(this, "Profile saved locally.", Toast.LENGTH_SHORT).show();
+            navigateToHome(username, password);
+        }
+    }
+
+    private void navigateToHome(String username, String password) {
+        Intent intent = new Intent(TravellerProfileActivity.this, HomeActivity.class);
+        intent.putExtra("username", username);
+        intent.putExtra("password", password);
+
+        if (profileImage.getTag() instanceof String) {
+            intent.putExtra("profileImageUri", (String) profileImage.getTag());
+        }
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 
     // -------------------------------------------------
@@ -460,8 +505,7 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         && !email.isEmpty()
                         && !phone.isEmpty()
                         && !dob.isEmpty()
-                        && !password.isEmpty()
-                        && photoSelected;
+                        && !password.isEmpty();
 
         createProfileButton.setEnabled(allFilled);
     }
@@ -503,7 +547,8 @@ public class TravellerProfileActivity extends AppCompatActivity {
                     result -> {
 
                         if (result.getResultCode() == RESULT_OK
-                                && result.getData() != null) {
+                                && result.getData() != null
+                                && result.getData().getExtras() != null) {
 
                             Bitmap photo =
                                     (Bitmap) result.getData()
@@ -515,19 +560,17 @@ public class TravellerProfileActivity extends AppCompatActivity {
                                 profileImage.setImageBitmap(photo);
                                 photoSelected = true;
 
-                                ByteArrayOutputStream stream =
-                                        new ByteArrayOutputStream();
+                                try {
+                                    File photoFile = new File(getCacheDir(), "profile_photo.jpg");
+                                    FileOutputStream out = new FileOutputStream(photoFile);
+                                    photo.compress(Bitmap.CompressFormat.JPEG, 85, out);
+                                    out.flush();
+                                    out.close();
 
-                                photo.compress(
-                                        Bitmap.CompressFormat.JPEG,
-                                        80,
-                                        stream
-                                );
-
-                                byte[] photoBytes =
-                                        stream.toByteArray();
-
-                                profileImage.setTag(photoBytes);
+                                    profileImage.setTag(photoFile.getAbsolutePath());
+                                } catch (Exception e) {
+                                    Log.e(TAG, "Failed to save profile photo: " + e.getMessage());
+                                }
 
                                 checkFields();
                             }
