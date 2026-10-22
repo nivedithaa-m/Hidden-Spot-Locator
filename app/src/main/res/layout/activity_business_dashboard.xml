@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101615"
+    tools:context=".BusinessDashboardActivity">
+
+    <!-- Scenic Background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/waterfall3"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <!-- Dark Overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B8101615" />
+
+    <!-- Scroll View Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingTop="52dp"
+            android:paddingBottom="30dp">
+
+            <!-- Greeting Header -->
+            <TextView
+                android:id="@+id/tvWelcomeUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome, Owner 👋"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:fontFamily="@font/fraunces_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Manage your restaurant &amp; view visitor stats"
+                android:textColor="#B8C5C4"
+                android:textSize="13sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <!-- Stats Overview Card -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="PERFORMANCE STATS"
+                android:textColor="#9DE7DF"
+                android:textSize="11sp"
+                android:letterSpacing="0.18"
+                android:fontFamily="@font/inter_medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <!-- Visited Card -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="115dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/home_feature_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/tvVisitedCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="148"
+                        android:textColor="#9DE7DF"
+                        android:textSize="32sp"
+                        android:fontFamily="@font/fraunces_bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="People Visited"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/inter_medium" />
+
+                </LinearLayout>
+
+                <!-- Enquired Card -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="115dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/home_secondary_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/tvEnquiredCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="42"
+                        android:textColor="#F2D6A2"
+                        android:textSize="32sp"
+                        android:fontFamily="@font/fraunces_bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="People Enquired"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/inter_medium" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Restaurant Details Card -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="RESTAURANT DETAILS"
+                android:textColor="#9DE7DF"
+                android:textSize="11sp"
+                android:letterSpacing="0.18"
+                android:fontFamily="@font/inter_medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/traveller_intro_card"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvRestaurantName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The Hidden Valley Cafe"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/fraunces_bold" />
+
+                <TextView
+                    android:id="@+id/tvCuisinePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Multi-cuisine • ₹₹ Mid-range"
+                    android:textColor="#9DE7DF"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter_medium" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Cozy restaurant serving fresh local specials with scenic waterfall views."
+                    android:textColor="#D0DEDB"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter_regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="#35413E" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📍 Location: Near Waterfall Point, Main Highway"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter_regular" />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="📞 Phone: +91 98765 43210"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter_regular" />
+
+                <TextView
+                    android:id="@+id/tvHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="⏰ Hours: 10:00 AM - 10:00 PM"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter_regular" />
+
+            </LinearLayout>
+
+            <!-- Menu Card & Update Menu Button -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="MENU &amp; PRICING"
+                android:textColor="#9DE7DF"
+                android:textSize="11sp"
+                android:letterSpacing="0.18"
+                android:fontFamily="@font/inter_medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/home_secondary_card"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvMenuList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Chef Special Thali — ₹220\n• Woodfired Pizza — ₹350\n• Fresh Forest Coffee — ₹90\n• Homemade Dessert — ₹120"
+                    android:textColor="#DCE5E2"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="5dp"
+                    android:fontFamily="@font/inter_regular" />
+
+                <Button
+                    android:id="@+id/btnUpdateMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Update Menu &amp; Prices"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#10201D"
+                    android:textSize="14sp"
+                    android:background="@drawable/traveller_continue_button"
+                    android:backgroundTint="@null" />
+
+            </LinearLayout>
+
+            <!-- Edit Restaurant Profile Button -->
+            <Button
+                android:id="@+id/btnEditRestaurantDetails"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:text="Edit Restaurant Details"
+                android:textAllCaps="false"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:background="@drawable/welcome_button" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

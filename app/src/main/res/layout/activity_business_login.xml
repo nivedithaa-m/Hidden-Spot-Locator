@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BusinessLoginActivity">
+
+    <!-- Scenic Restaurant Background -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/create_profile_background"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <!-- Dark Overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C0101615" />
+
+    <!-- Scroll View Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="60dp"
+            android:paddingBottom="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BUSINESS LOGIN"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="#9DE7DF"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.06"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Sign in to manage your restaurant &amp; view stats"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#E8F5F4"
+                android:textSize="13sp"
+                android:gravity="center" />
+
+            <!-- Card Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/traveller_intro_card"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Email Input -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email / Restaurant ID"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/loginEmailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="e.g. restaurant@email.com"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:background="@drawable/profile_input_field"
+                    android:inputType="textEmailAddress" />
+
+                <!-- Password Input -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Password"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/loginPasswordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="Enter your password"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:background="@drawable/profile_input_field"
+                    android:inputType="textPassword"
+                    android:drawableEnd="@android:drawable/ic_menu_view"
+                    android:drawablePadding="8dp" />
+
+                <!-- Sign In Button -->
+                <Button
+                    android:id="@+id/btnBusinessSignIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="28dp"
+                    android:text="Sign In"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="#10201D"
+                    android:textSize="15sp"
+                    android:background="@drawable/traveller_continue_button"
+                    android:backgroundTint="@null" />
+
+            </LinearLayout>
+
+            <!-- Link to Create Profile -->
+            <TextView
+                android:id="@+id/tvGoToCreateProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Don't have a business profile? Create Profile"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="#9DE7DF"
+                android:textSize="13sp"
+                android:padding="8dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
