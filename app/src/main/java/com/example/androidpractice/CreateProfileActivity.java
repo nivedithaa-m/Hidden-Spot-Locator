@@ -27,9 +27,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
         // Traveller selected
         travellerCard.setOnClickListener(v -> {
-
             selectedRole = "traveller";
-
             travellerCard.setSelected(true);
             businessCard.setSelected(false);
 
@@ -39,31 +37,11 @@ public class CreateProfileActivity extends AppCompatActivity {
                             android.graphics.Color.parseColor("#1976D2")
                     )
             );
-            continueButton.setOnClickListener(view -> {
-
-                if (selectedRole.equals("traveller")) {
-
-                    Intent intent = new Intent(
-                            CreateProfileActivity.this,
-                            TravellerProfileActivity.class
-                    );
-
-                    startActivity(intent);
-
-                } else if (selectedRole.equals("business")) {
-
-                    // Business page will be added later
-
-                }
-
-            });
         });
 
         // Business selected
         businessCard.setOnClickListener(v -> {
-
             selectedRole = "business";
-
             businessCard.setSelected(true);
             travellerCard.setSelected(false);
 
@@ -73,24 +51,22 @@ public class CreateProfileActivity extends AppCompatActivity {
                             android.graphics.Color.parseColor("#1976D2")
                     )
             );
-            continueButton.setOnClickListener(view -> {
+        });
 
-                if (selectedRole.equals("traveller")) {
-
-                    Intent intent = new Intent(
-                            CreateProfileActivity.this,
-                            TravellerProfileActivity.class
-                    );
-
-                    startActivity(intent);
-
-                } else if (selectedRole.equals("business")) {
-
-                    // Business page will be added later
-
-                }
-
-            });
+        continueButton.setOnClickListener(view -> {
+            if ("traveller".equals(selectedRole)) {
+                Intent intent = new Intent(
+                        CreateProfileActivity.this,
+                        TravellerProfileActivity.class
+                );
+                startActivity(intent);
+            } else if ("business".equals(selectedRole)) {
+                Intent intent = new Intent(
+                        CreateProfileActivity.this,
+                        BusinessProfileActivity.class
+                );
+                startActivity(intent);
+            }
         });
     }
 }

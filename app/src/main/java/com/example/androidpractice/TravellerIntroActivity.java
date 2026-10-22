@@ -35,7 +35,7 @@ public class TravellerIntroActivity extends AppCompatActivity {
         skipButton.setOnClickListener(v -> {
             Intent intent = new Intent(
                     TravellerIntroActivity.this,
-                    BusinessProfileActivity.class
+                    BusinessIntroActivity.class
             );
             startActivity(intent);
         });

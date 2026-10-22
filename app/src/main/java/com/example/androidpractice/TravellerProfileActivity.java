@@ -86,18 +86,20 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         } else {
 
                             // Gallery selected
+                            String permission = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU)
+                                    ? Manifest.permission.READ_MEDIA_IMAGES
+                                    : Manifest.permission.READ_EXTERNAL_STORAGE;
+
                             if (ContextCompat.checkSelfPermission(
                                     this,
-                                    Manifest.permission.READ_MEDIA_IMAGES
+                                    permission
                             ) == PackageManager.PERMISSION_GRANTED) {
 
                                 openGallery();
 
                             } else {
 
-                                galleryPermissionLauncher.launch(
-                                        Manifest.permission.READ_MEDIA_IMAGES
-                                );
+                                galleryPermissionLauncher.launch(permission);
                             }
                         }
                     })
@@ -115,7 +117,8 @@ public class TravellerProfileActivity extends AppCompatActivity {
 
             if (event.getAction() == MotionEvent.ACTION_UP) {
 
-                if (event.getX() >= passwordInput.getWidth()
+                if (passwordInput.getCompoundDrawables()[2] != null
+                        && event.getX() >= passwordInput.getWidth()
                         - passwordInput.getCompoundDrawables()[2].getBounds().width()
                         - passwordInput.getPaddingEnd()) {
 
@@ -463,7 +466,8 @@ public class TravellerProfileActivity extends AppCompatActivity {
                     result -> {
 
                         if (result.getResultCode() == RESULT_OK
-                                && result.getData() != null) {
+                                && result.getData() != null
+                                && result.getData().getExtras() != null) {
 
                             Bitmap photo =
                                     (Bitmap) result.getData()
@@ -510,12 +514,8 @@ public class TravellerProfileActivity extends AppCompatActivity {
     }
     private void openGallery() {
 
-        Intent intent = new Intent(
-                Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        );
-
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
 
         galleryLauncher.launch(intent);
     }

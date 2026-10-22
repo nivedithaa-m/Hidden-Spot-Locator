@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/create_profile_background"
+        android:src="@drawable/hidden_spot_locator"
         android:scaleType="centerCrop"
         android:contentDescription="@null" />
 

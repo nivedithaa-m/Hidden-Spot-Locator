@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/create_profile_background" />
+        android:src="@drawable/road" />
 
     <!-- Dark overlay so text stays readable -->
     <View

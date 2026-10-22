@@ -1,5 +1,6 @@
 package com.example.androidpractice;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -97,19 +98,34 @@ public class BusinessProfileActivity extends AppCompatActivity {
     }
 
     private void saveProfile() {
+        String name = businessNameInput.getText().toString().trim();
+        String description = descriptionInput.getText().toString().trim();
+        String address = addressInput.getText().toString().trim();
+        String phone = phoneInput.getText().toString().trim();
+        String hours = hoursInput.getText().toString().trim();
+
         SharedPreferences.Editor editor =
                 getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
 
-        editor.putString("name", businessNameInput.getText().toString().trim());
+        editor.putString("name", name);
         editor.putInt("cuisineIndex", cuisineSpinner.getSelectedItemPosition());
         editor.putInt("priceIndex", priceSpinner.getSelectedItemPosition());
-        editor.putString("description", descriptionInput.getText().toString().trim());
-        editor.putString("address", addressInput.getText().toString().trim());
-        editor.putString("phone", phoneInput.getText().toString().trim());
-        editor.putString("hours", hoursInput.getText().toString().trim());
+        editor.putString("description", description);
+        editor.putString("address", address);
+        editor.putString("phone", phone);
+        editor.putString("hours", hours);
         editor.apply();
 
-        Toast.makeText(this, "Profile saved!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Profile saved successfully!", Toast.LENGTH_SHORT).show();
+
+        String ownerName = getIntent().getStringExtra("ownerName");
+        Intent intent = new Intent(BusinessProfileActivity.this, BusinessDashboardActivity.class);
+        if (ownerName != null && !ownerName.isEmpty()) {
+            intent.putExtra("ownerName", ownerName);
+        } else {
+            intent.putExtra("ownerName", name);
+        }
+        startActivity(intent);
         finish();
     }
 
