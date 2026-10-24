@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101615"
+    tools:context=".trackor">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="90dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="12dp"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/btnBackTrackor"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Back"
+                    android:padding="6dp"
+                    android:rotation="270"
+                    android:src="@drawable/ic_navigation"
+                    app:tint="#9DE7DF" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fraunces_bold"
+                        android:text="Explore Route &amp; Map"
+                        android:textColor="#FFFFFF"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="Select start &amp; destination locations"
+                        android:textColor="#B8C5C4"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Main Card for Locations -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#182220"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Start Location -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="STARTING LOCATION"
+                        android:textColor="#9AA9A5"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/profile_input_field"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_my_location"
+                            app:tint="#9DE7DF" />
+
+                        <EditText
+                            android:id="@+id/etStartLocation"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:hint="Current Location or Enter Start"
+                            android:inputType="textPostalAddress"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#6B7C78"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/btnUseCurrentLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/home_icon_circle"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="GPS"
+                            android:textColor="#17211D"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Start Suggestions List -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvStartSuggestions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/profile_input_field"
+                        android:visibility="gone"
+                        tools:listitem="@layout/item_location_suggestion" />
+
+                    <!-- Swap Button -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:layout_marginVertical="6dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center"
+                            android:background="#2C3B38" />
+
+                        <ImageView
+                            android:id="@+id/btnSwapLocations"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/profile_input_field"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_swap_vert"
+                            app:tint="#9DE7DF" />
+                    </FrameLayout>
+
+                    <!-- Dropping Location -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="DROPPING LOCATION (DESTINATION)"
+                        android:textColor="#9AA9A5"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/profile_input_field"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_place"
+                            app:tint="#FF6B6B" />
+
+                        <EditText
+                            android:id="@+id/etDropLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@null"
+                            android:hint="Where do you want to go?"
+                            android:inputType="textPostalAddress"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#6B7C78"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- Drop Suggestions List -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDropSuggestions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/profile_input_field"
+                        android:visibility="gone"
+                        tools:listitem="@layout/item_location_suggestion" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Mode of Travel -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="Travel Mode"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCar"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="🚗 Car / Drive" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBike"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏍️ Bike / Scooter" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipWalk"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚶 Walk" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Quick Destination Suggestions -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="Popular Destinations"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupPresets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAirport"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✈️ City Airport" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStation"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚉 Central Railway Station" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMall"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🛍️ Grand City Mall" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBeach"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏖️ Sunset Beach Point" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHillStation"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⛰️ Mountain Lookout" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Confirm Route Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnConfirmRoute"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@drawable/profile_continue_button"
+                android:fontFamily="@font/inter_medium"
+                android:text="Confirm Route &amp; Show Map ➔"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar for Traveller -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/home_bottom_nav"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
+
+        <!-- Home -->
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⌂"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Home"
+                android:textColor="#899995"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Explore (Highlighted) -->
+        <LinearLayout
+            android:id="@+id/navExploreBottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⌕"
+                android:textColor="#9DE7DF"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Explore"
+                android:textColor="#9DE7DF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Add -->
+        <LinearLayout
+            android:id="@+id/navAddBottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Add"
+                android:textColor="#899995"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Profile -->
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="○"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Profile"
+                android:textColor="#899995"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,173 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/businessWelcomeRoot"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#101615"
     tools:context=".BusinessIntroActivity">
 
-    <!-- Background Image Switcher -->
-    <ImageSwitcher
-        android:id="@+id/businessBackgroundSwitcher"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!-- Background -->
+    <ImageView
+        android:id="@+id/businessBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/forest2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Dark Overlays -->
+    <!-- Dark overlay -->
     <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/welcome_overlay" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#A6101615"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_bottom_overlay" />
+    <!-- Centre card -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/businessScroll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Content Container -->
-    <LinearLayout
-        android:id="@+id/slideContentContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="52dp"
-        android:paddingBottom="40dp">
-
-        <!-- Top Header -->
-        <TextView
-            android:id="@+id/tvHeaderCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BUSINESS PARTNER • 01 / 04"
-            android:fontFamily="@font/fraunces_semibold"
-            android:textColor="#F2D6A2"
-            android:textSize="12sp"
-            android:letterSpacing="0.14" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <!-- Feature Showcase Card -->
         <LinearLayout
-            android:id="@+id/showcaseCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/traveller_intro_card"
             android:orientation="vertical"
-            android:padding="26dp">
+            android:paddingStart="25dp"
+            android:paddingTop="28dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="22dp">
 
-            <!-- Step badge -->
+            <!-- Section label -->
             <TextView
-                android:id="@+id/tvStepBadge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fraunces_bold"
+                android:letterSpacing="0.01"
+                android:text="BUSINESS"
+                android:textColor="#FFFFFF"
+                android:textSize="38sp" />
+
+            <!-- Heading -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Promote your local business."
+                android:textColor="#9DE7DF"
+                android:textSize="16sp" />
+
+            <!-- Intro -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="3dp"
+                android:text="Hidden Spot Locator connects travellers with authentic local restaurants, cafes, and spots in Kollam. Present your business to thousands of explorers."
+                android:textColor="#D0DEDB"
+                android:textSize="14sp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="#35413E" />
+
+            <!-- Feature 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/traveller_icon_background"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center"
+                    android:text="01"
+                    android:textColor="#9DE7DF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Showcase your restaurant or local spot"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- Feature 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/traveller_icon_background"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center"
+                    android:text="02"
+                    android:textColor="#9DE7DF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Display menu items, specialties &amp; prices"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- Feature 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/traveller_icon_background"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center"
+                    android:text="03"
+                    android:textColor="#9DE7DF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Reach travellers searching along their route"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- Continue -->
+            <Button
+                android:id="@+id/btnBusinessContinue"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="23dp"
+                android:background="@drawable/traveller_continue_button"
+                android:fontFamily="@font/inter_medium"
+                android:text="Continue to Business Profile"
+                android:textAllCaps="false"
+                android:textColor="#10201D"
+                android:textSize="15sp" />
+
+            <!-- Skip -->
+            <TextView
+                android:id="@+id/tvBusinessSkip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/traveller_icon_background"
-                android:fontFamily="@font/inter_medium"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:text="FEATURE 01"
-                android:textColor="#9DE7DF"
-                android:textSize="11sp" />
-
-            <!-- Category -->
-            <TextView
-                android:id="@+id/tvFeatureCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="SHOWCASE MENU &amp; DAILY SPECIALS"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="#9DE7DF"
-                android:textSize="12sp"
-                android:letterSpacing="0.08" />
-
-            <!-- Title -->
-            <TextView
-                android:id="@+id/tvSlideTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Reach Hungry Travelers Nearby"
-                android:textColor="#FFFFFF"
-                android:textSize="26sp"
-                android:fontFamily="@font/fraunces_bold" />
-
-            <!-- Description -->
-            <TextView
-                android:id="@+id/tvSlideDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Highlight your signature dishes, daily lunch specials, and complete menu with transparent pricing directly to travelers exploring your route."
-                android:textColor="#D0DEDB"
-                android:textSize="14sp"
-                android:lineSpacingExtra="4dp"
-                android:fontFamily="@font/inter_regular" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="9dp"
+                android:fontFamily="@font/inter_regular"
+                android:padding="7dp"
+                android:text="Skip &amp; Explore as Guest"
+                android:textColor="#91A19C"
+                android:textSize="13sp" />
 
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+    </androidx.core.widget.NestedScrollView>
 
-        <!-- Dots Indicator -->
-        <LinearLayout
-            android:id="@+id/dotsContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <View
-                android:id="@+id/dot0"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginEnd="7dp"
-                android:background="@drawable/dot_active" />
-
-            <View
-                android:id="@+id/dot1"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginEnd="7dp"
-                android:background="@drawable/dot_inactive" />
-
-            <View
-                android:id="@+id/dot2"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginEnd="7dp"
-                android:background="@drawable/dot_inactive" />
-
-            <View
-                android:id="@+id/dot3"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@drawable/dot_inactive" />
-
-        </LinearLayout>
-
-        <!-- Tap Anywhere Hint -->
-        <TextView
-            android:id="@+id/tapAnywhereHint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Tap anywhere to continue ›"
-            android:fontFamily="@font/inter_regular"
-            android:textColor="#F2D6A2"
-            android:textSize="13sp"
-            android:letterSpacing="0.03" />
-
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

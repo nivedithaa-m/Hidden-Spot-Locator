@@ -1,33 +1,45 @@
 package com.example.androidpractice;
-import java.io.ByteArrayOutputStream;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
-import android.util.Patterns;
-import android.view.MotionEvent;
-import android.widget.Button;
-import android.widget.EditText;
+
+import java.io.File;
+import java.io.FileOutputStream;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.util.Patterns;
+import android.view.MotionEvent;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.ContextCompat;
-import java.util.Calendar;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
 public class TravellerProfileActivity extends AppCompatActivity {
+
+    private static final String TAG = "TravellerProfile";
+
     private ImageView profileImage;
     private Button uploadPhotoButton;
 
@@ -44,6 +56,7 @@ public class TravellerProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_traveller_profile);
 
@@ -58,6 +71,7 @@ public class TravellerProfileActivity extends AppCompatActivity {
         createProfileButton = findViewById(R.id.createProfileButton);
         profileImage = findViewById(R.id.profileImage);
         uploadPhotoButton = findViewById(R.id.uploadPhotoButton);
+
         uploadPhotoButton.setOnClickListener(v -> {
 
             String[] options = {"Camera", "Gallery"};
@@ -106,7 +120,7 @@ public class TravellerProfileActivity extends AppCompatActivity {
                     .show();
         });
 
-        // Initially disable the button
+        // Initially disable the button until required fields are filled
         createProfileButton.setEnabled(false);
 
         // -------------------------------------------------
@@ -123,31 +137,37 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         - passwordInput.getPaddingEnd()) {
 
                     if (passwordInput.getInputType()
-                            == (InputType.TYPE_CLASS_TEXT |
-                            InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                            == (InputType.TYPE_CLASS_TEXT
+                            | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
 
                         // Show password
                         passwordInput.setInputType(
-                                InputType.TYPE_CLASS_TEXT |
-                                        InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                                InputType.TYPE_CLASS_TEXT
+                                        | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
                         );
 
                         // Change to open eye
                         passwordInput.setCompoundDrawablesWithIntrinsicBounds(
-                                0, 0, R.drawable.ic_visibility, 0
+                                0,
+                                0,
+                                R.drawable.ic_visibility,
+                                0
                         );
 
                     } else {
 
                         // Hide password
                         passwordInput.setInputType(
-                                InputType.TYPE_CLASS_TEXT |
-                                        InputType.TYPE_TEXT_VARIATION_PASSWORD
+                                InputType.TYPE_CLASS_TEXT
+                                        | InputType.TYPE_TEXT_VARIATION_PASSWORD
                         );
 
                         // Change to closed eye
                         passwordInput.setCompoundDrawablesWithIntrinsicBounds(
-                                0, 0, R.drawable.ic_visibility_off, 0
+                                0,
+                                0,
+                                R.drawable.ic_visibility_off,
+                                0
                         );
                     }
 
@@ -169,7 +189,8 @@ public class TravellerProfileActivity extends AppCompatActivity {
 
             if (!hasFocus) {
 
-                String email = emailInput.getText().toString().trim();
+                String email =
+                        emailInput.getText().toString().trim();
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     emailInput.setError("Invalid email");
@@ -185,7 +206,8 @@ public class TravellerProfileActivity extends AppCompatActivity {
 
             if (!hasFocus) {
 
-                String phone = phoneInput.getText().toString().trim();
+                String phone =
+                        phoneInput.getText().toString().trim();
 
                 if (!phone.matches("[6-9][0-9]{9}")) {
                     phoneInput.setError("Invalid phone number");
@@ -202,16 +224,18 @@ public class TravellerProfileActivity extends AppCompatActivity {
 
             Calendar calendar = Calendar.getInstance();
 
-            int currentYear = calendar.get(Calendar.YEAR);
+            int currentYear =
+                    calendar.get(Calendar.YEAR);
 
             // Step 1: Select Year
-
             final int[] selectedYear = new int[1];
 
-            String[] years = new String[currentYear - 1900 + 1];
+            String[] years =
+                    new String[currentYear - 1900 + 1];
 
             for (int i = 0; i < years.length; i++) {
-                years[i] = String.valueOf(currentYear - i);
+                years[i] =
+                        String.valueOf(currentYear - i);
             }
 
             new android.app.AlertDialog.Builder(this)
@@ -222,7 +246,6 @@ public class TravellerProfileActivity extends AppCompatActivity {
                                 Integer.parseInt(years[which]);
 
                         // Step 2: Select Month
-
                         String[] months = {
                                 "January",
                                 "February",
@@ -242,10 +265,10 @@ public class TravellerProfileActivity extends AppCompatActivity {
                                 .setTitle("Select Month")
                                 .setItems(months, (monthDialog, monthWhich) -> {
 
-                                    int selectedMonth = monthWhich;
+                                    int selectedMonth =
+                                            monthWhich;
 
                                     // Step 3: Select Day
-
                                     Calendar selectedDate =
                                             Calendar.getInstance();
 
@@ -279,7 +302,6 @@ public class TravellerProfileActivity extends AppCompatActivity {
                                                         dayWhich + 1;
 
                                                 // Set selected date
-
                                                 selectedDate.set(
                                                         selectedYear[0],
                                                         selectedMonth,
@@ -287,12 +309,10 @@ public class TravellerProfileActivity extends AppCompatActivity {
                                                 );
 
                                                 // Get today's date
-
                                                 Calendar today =
                                                         Calendar.getInstance();
 
                                                 // Prevent future DOB
-
                                                 if (selectedDate.after(today)) {
 
                                                     dobInput.setError(
@@ -303,7 +323,6 @@ public class TravellerProfileActivity extends AppCompatActivity {
                                                 }
 
                                                 // Format DOB
-
                                                 String date =
                                                         String.format(
                                                                 "%02d/%02d/%04d",
@@ -351,38 +370,13 @@ public class TravellerProfileActivity extends AppCompatActivity {
         };
 
         // Watch all fields
-
         nameInput.addTextChangedListener(textWatcher);
         emailInput.addTextChangedListener(textWatcher);
         phoneInput.addTextChangedListener(textWatcher);
         dobInput.addTextChangedListener(textWatcher);
         passwordInput.addTextChangedListener(textWatcher);
-        createProfileButton.setOnClickListener(v -> {
 
-            String username = nameInput.getText().toString().trim();
-
-            Intent intent = new Intent(
-                    TravellerProfileActivity.this,
-                    HomeActivity.class
-            );
-
-            intent.putExtra("username", username);
-
-            if (profileImage.getTag() instanceof String) {
-                intent.putExtra(
-                        "profileImageUri",
-                        (String) profileImage.getTag()
-                );
-            } else if (profileImage.getTag() instanceof byte[]) {
-                intent.putExtra(
-                        "profileImageBytes",
-                        (byte[]) profileImage.getTag()
-                );
-            }
-
-            startActivity(intent);
-            finish();
-        });
+        createProfileButton.setOnClickListener(v -> handleCreateProfileClick());
 
         // -------------------------------------------------
         // WINDOW INSETS
@@ -407,6 +401,85 @@ public class TravellerProfileActivity extends AppCompatActivity {
                     return insets;
                 }
         );
+    }
+
+    private void handleCreateProfileClick() {
+        String username = nameInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
+        String email = emailInput.getText().toString().trim();
+        String phone = phoneInput.getText().toString().trim();
+        String dob = dobInput.getText().toString().trim();
+
+        if (username.isEmpty() || email.isEmpty() || phone.isEmpty() || dob.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill in all required profile fields.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailInput.setError("Please enter a valid email address");
+            emailInput.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6) {
+            passwordInput.setError("Password must be at least 6 characters");
+            passwordInput.requestFocus();
+            return;
+        }
+
+        createProfileButton.setEnabled(false);
+
+        // Save credentials locally
+        getSharedPreferences("UserData", MODE_PRIVATE)
+                .edit()
+                .putString("username", username)
+                .putString("password", password)
+                .putString("email", email)
+                .putString("phone", phone)
+                .apply();
+
+        // Perform Firebase Auth registration & Firestore user document creation
+        if (FirebaseAuthManager.isFirebaseReady()) {
+            Map<String, Object> extraFields = new HashMap<>();
+            extraFields.put("phone", phone);
+            extraFields.put("dob", dob);
+
+            FirebaseAuthManager.registerUser(email, password, username, "traveller", extraFields, new FirebaseAuthManager.AuthCallback() {
+                @Override
+                public void onSuccess(String userId, String userEmail, String role) {
+                    runOnUiThread(() -> {
+                        Toast.makeText(TravellerProfileActivity.this, "Traveller account & profile created successfully!", Toast.LENGTH_SHORT).show();
+                        navigateToHome(username, password);
+                    });
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    runOnUiThread(() -> {
+                        createProfileButton.setEnabled(true);
+                        Toast.makeText(TravellerProfileActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                    });
+                }
+            });
+        } else {
+            // Local offline fallback
+            Toast.makeText(this, "Profile saved locally.", Toast.LENGTH_SHORT).show();
+            navigateToHome(username, password);
+        }
+    }
+
+    private void navigateToHome(String username, String password) {
+        Intent intent = new Intent(TravellerProfileActivity.this, HomeActivity.class);
+        intent.putExtra("username", username);
+        intent.putExtra("password", password);
+
+        if (profileImage.getTag() instanceof String) {
+            intent.putExtra("profileImageUri", (String) profileImage.getTag());
+        }
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 
     // -------------------------------------------------
@@ -435,11 +508,15 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         && !email.isEmpty()
                         && !phone.isEmpty()
                         && !dob.isEmpty()
-                        && !password.isEmpty()
-                        && photoSelected;
+                        && !password.isEmpty();
 
         createProfileButton.setEnabled(allFilled);
     }
+
+    // -------------------------------------------------
+    // GALLERY
+    // -------------------------------------------------
+
     private final ActivityResultLauncher<Intent> galleryLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
@@ -448,17 +525,24 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         if (result.getResultCode() == RESULT_OK
                                 && result.getData() != null) {
 
-                            Uri imageUri = result.getData().getData();
+                            Uri imageUri =
+                                    result.getData().getData();
 
                             if (imageUri != null) {
+
                                 profileImage.setImageURI(imageUri);
                                 profileImage.setTag(imageUri.toString());
+
                                 photoSelected = true;
                                 checkFields();
                             }
                         }
                     }
             );
+
+    // -------------------------------------------------
+    // CAMERA
+    // -------------------------------------------------
 
     private final ActivityResultLauncher<Intent> cameraLauncher =
             registerForActivityResult(
@@ -475,19 +559,32 @@ public class TravellerProfileActivity extends AppCompatActivity {
                                             .get("data");
 
                             if (photo != null) {
+
                                 profileImage.setImageBitmap(photo);
                                 photoSelected = true;
 
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                photo.compress(Bitmap.CompressFormat.JPEG, 80, stream);
-                                byte[] photoBytes = stream.toByteArray();
+                                try {
+                                    File photoFile = new File(getCacheDir(), "profile_photo.jpg");
+                                    FileOutputStream out = new FileOutputStream(photoFile);
+                                    photo.compress(Bitmap.CompressFormat.JPEG, 85, out);
+                                    out.flush();
+                                    out.close();
 
-                                profileImage.setTag(photoBytes);
+                                    profileImage.setTag(photoFile.getAbsolutePath());
+                                } catch (Exception e) {
+                                    Log.e(TAG, "Failed to save profile photo: " + e.getMessage());
+                                }
 
                                 checkFields();
                             }
                         }
-                    });
+                    }
+            );
+
+    // -------------------------------------------------
+    // CAMERA PERMISSION
+    // -------------------------------------------------
+
     private final ActivityResultLauncher<String> cameraPermissionLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.RequestPermission(),
@@ -496,7 +593,13 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         if (isGranted) {
                             openCamera();
                         }
-                    });
+                    }
+            );
+
+    // -------------------------------------------------
+    // GALLERY PERMISSION
+    // -------------------------------------------------
+
     private final ActivityResultLauncher<String> galleryPermissionLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.RequestPermission(),
@@ -505,13 +608,25 @@ public class TravellerProfileActivity extends AppCompatActivity {
                         if (isGranted) {
                             openGallery();
                         }
-                    });
+                    }
+            );
+
+    // -------------------------------------------------
+    // OPEN CAMERA
+    // -------------------------------------------------
+
     private void openCamera() {
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent intent =
+                new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         cameraLauncher.launch(intent);
     }
+
+    // -------------------------------------------------
+    // OPEN GALLERY
+    // -------------------------------------------------
+
     private void openGallery() {
 
         Intent intent = new Intent(Intent.ACTION_PICK);

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101615"
+    tools:context=".AddRestaurantActivity">
+
+    <!-- Background Image -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/road" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D9101615" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="90dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="36dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="35dp">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:letterSpacing="0.05"
+                android:text="ADD YOUR RESTAURANT"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- Subtitle -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:text="Submit menu items, photos, and address for admin verification"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+
+            <!-- Restaurant Name -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etRestaurantName"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Enter restaurant name"
+                    android:inputType="textCapWords"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Cuisine Spinner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Cuisine"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spinnerCuisine"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#17211D" />
+            </LinearLayout>
+
+            <!-- Price Range Spinner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Price"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spinnerPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#17211D" />
+            </LinearLayout>
+
+            <!-- Description -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="About"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="top"
+                    android:hint="Specialties &amp; description"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:minLines="3"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Address -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Address"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Full location address in Kollam"
+                    android:inputType="textPostalAddress|textMultiLine"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Phone -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Phone"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Contact phone number"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Opening Hours -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Hours"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etHours"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="e.g. 11:00 AM - 10:00 PM"
+                    android:inputType="text"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Menu Specialty Item -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="FEATURED MENU ITEM"
+                android:textColor="#9DE7DF"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Item Name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etMenuItemName"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="e.g. Karimeen Pollichathu"
+                    android:inputType="textCapWords"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Price (₹)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etMenuItemPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="e.g. 350"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#B8C5C4"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/btnSubmitRestaurant"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/profile_continue_button"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Submit Application for Review ➔"
+                android:textAllCaps="false"
+                android:textColor="#17211D"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar for Business -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/home_bottom_nav"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
+
+        <!-- Home -->
+        <LinearLayout
+            android:id="@+id/bizNavHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⌂"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Home"
+                android:textColor="#899995"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- Add (Highlighted) -->
+        <LinearLayout
+            android:id="@+id/bizNavAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="#9DE7DF"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Add"
+                android:textColor="#9DE7DF"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- Update -->
+        <LinearLayout
+            android:id="@+id/bizNavUpdate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✏️"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Update"
+                android:textColor="#899995"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- Profile -->
+        <LinearLayout
+            android:id="@+id/bizNavProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="○"
+                android:textColor="#899995"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Profile"
+                android:textColor="#899995"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

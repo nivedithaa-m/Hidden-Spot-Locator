@@ -1,192 +1,442 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#101615"
+    tools:context=".BusinessProfileActivity">
 
-    <!-- Background image -->
+    <!-- Background Image -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@null"
         android:scaleType="centerCrop"
         android:src="@drawable/road" />
 
-    <!-- Dark overlay so text stays readable -->
+    <!-- Dark Overlay for Readability -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B3000000" />
+        android:background="#88101615" />
 
+    <!-- Scrollable Form Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:fitsSystemWindows="true">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingStart="24dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="35dp">
 
+            <!-- Page Heading -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RESTAURANT PROFILE"
-                android:textColor="#7FE3D2"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.05" />
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:letterSpacing="0.05"
+                android:text="CREATE BUSINESS PROFILE"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
+            <!-- Subtitle -->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="28dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
                 android:text="Showcase your restaurant to travellers nearby"
-                android:textColor="#E0E0E0"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 
-            <!-- Restaurant name -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/businessNameLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <!-- Restaurant Name -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:boxStrokeColor="#5FD6C4"
-                app:hintTextColor="#7FE3D2"
-                android:hint="Restaurant name *">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/businessNameInput"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Name"
                     android:textColor="#FFFFFF"
-                    android:inputType="textCapWords" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="14sp" />
 
-            <!-- Cuisine type -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="Cuisine type"
-                android:textColor="#7FE3D2"
-                android:textSize="12sp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/businessNameLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false">
 
-            <Spinner
-                android:id="@+id/cuisineSpinner"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/businessNameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/profile_input_field"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="Enter restaurant name"
+                        android:inputType="textCapWords"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#B8C5C4"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Email Address -->
+            <LinearLayout
+                android:id="@+id/emailRowLayout"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginBottom="16dp"
-                android:background="#1C2529"
-                android:popupBackground="#1C2529" />
-
-            <!-- Price range -->
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="Price range"
-                android:textColor="#7FE3D2"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:id="@+id/priceSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
                 android:layout_marginBottom="16dp"
-                android:background="#1C2529"
-                android:popupBackground="#1C2529" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Email"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/profile_input_field"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="Enter business email"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#B8C5C4"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Password -->
+            <LinearLayout
+                android:id="@+id/passwordRowLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Password"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/profile_input_field"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="Enter password (min 6 chars)"
+                        android:inputType="textPassword"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#B8C5C4"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Cuisine Type Spinner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Cuisine"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/cuisineSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#17211D" />
+            </LinearLayout>
+
+            <!-- Price Range Spinner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Price"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/priceSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/profile_input_field"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:popupBackground="#17211D" />
+            </LinearLayout>
 
             <!-- Description -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/descriptionLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:boxStrokeColor="#5FD6C4"
-                app:hintTextColor="#7FE3D2"
-                android:hint="Describe your restaurant &amp; specialties">
+                android:gravity="top"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/descriptionInput"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="About"
                     android:textColor="#FFFFFF"
-                    android:gravity="top"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:minLines="3" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/descriptionLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/descriptionInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/profile_input_field"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="top"
+                        android:hint="Specialties &amp; description"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:minLines="3"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#B8C5C4"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <!-- Address -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/addressLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:boxStrokeColor="#5FD6C4"
-                app:hintTextColor="#7FE3D2"
-                android:hint="Address / location *">
+                android:gravity="top"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/addressInput"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Address"
                     android:textColor="#FFFFFF"
-                    android:inputType="textPostalAddress|textMultiLine" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/addressLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/addressInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/profile_input_field"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="Enter address in Kollam"
+                        android:inputType="textPostalAddress|textMultiLine"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#B8C5C4"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <!-- Phone -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/phoneLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:boxStrokeColor="#5FD6C4"
-                app:hintTextColor="#7FE3D2"
-                android:hint="Phone number *">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phoneInput"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Phone"
                     android:textColor="#FFFFFF"
-                    android:inputType="phone" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="14sp" />
 
-            <!-- Opening hours -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/hoursLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phoneLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/profile_input_field"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="Enter 10-digit phone"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#B8C5C4"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Opening Hours -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:boxStrokeColor="#5FD6C4"
-                app:hintTextColor="#7FE3D2"
-                android:hint="Opening hours (e.g. 11 AM - 10 PM)">
+                android:layout_marginBottom="28dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/hoursInput"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Hours"
                     android:textColor="#FFFFFF"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="14sp" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hoursLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/hoursInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/profile_input_field"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="e.g. 10:00 AM - 10:00 PM"
+                        android:inputType="text"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#B8C5C4"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Create Profile Button -->
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:backgroundTint="#1976D2"
-                android:text="Save profile"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
+                android:layout_height="52dp"
+                android:background="@drawable/profile_continue_button"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Create Profile"
+                android:textAllCaps="false"
+                android:textColor="#17211D"
+                android:textSize="15sp" />
 
         </LinearLayout>
+
     </ScrollView>
+
 </FrameLayout>
