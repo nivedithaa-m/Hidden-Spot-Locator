@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDuration(300)
                 .setInterpolator(new AccelerateInterpolator())
                 .withEndAction(() -> {
-                    Intent intent = new Intent(MainActivity.this, TravellerIntroActivity.class);
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();

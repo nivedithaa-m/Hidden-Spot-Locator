@@ -34,6 +34,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".AddHiddenSpotActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
@@ -75,10 +79,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".HomeActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
